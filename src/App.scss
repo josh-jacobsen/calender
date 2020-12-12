@@ -1,17 +1,45 @@
 @import "~bootstrap/scss/bootstrap";
 
+.weatherPanel {
+  background-color: #7f53ac;
+  background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
+}
+
+.titleRow {
+    text-align: left;
+    border-bottom: solid 1px gray;
+}
+
+
+
+.weatherPanelRowMargin {
+  margin-top: 3vh;
+}
+
 .textAlignLeft {
   text-align: left;
-  border: solid red 1px;
 }
+
+.textAlignRight {
+  text-align: right;
+}
+
+.calendar {
+  border: none;
+  width: 460px;
+}
+
+.taskRow {
+  border-top: solid 1px gray;
+  padding-top: 2vh;
+  margin-top: 2vh;
+}
+
 
 .containerStyle {
   margin-top: 10vh;
-  border: solid red 1px;
-}
-
-.solidBorder {
-  border: solid red 2px;
+  max-width: 720px;
+  border: solid 1px gray;
 }
 
 .headingOne {
