@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Calendar from 'react-calendar';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -7,27 +8,25 @@ import Figure from 'react-bootstrap/Figure'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import sun_clouds from './sun_clouds.png'
+import {addTodo} from './features/todo/todoSlice'
 import 'react-calendar/dist/Calendar.css';
 import './App.scss';
 
 
 function App() {
   const [value, onChange] = useState(new Date());
+  const dispatch = useDispatch();
+  const todos = useSelector(state => state.todos);
+  let numberTodosCompleted = todos.filter(t => t.state === "Completed").length;
+  let numberTodosPostponed = todos.filter(t => t.state === "Postponed").length;
+  let numberTodosInProgress = todos.filter(t => t.state === "InProgress").length;
+  let numberTodosTotal = numberTodosCompleted + numberTodosInProgress + numberTodosPostponed
   return (
     <div className="App">
       <Container className="containerStyle" >
         <Row className="titleRow">
           <Col>
             <Row>
-              <p>
-                x
-              </p>
-              <p>
-                x
-              </p>
-              <p>
-                x
-              </p>
               <p className="headingOne">
                 Calendar
               </p>
@@ -49,7 +48,6 @@ function App() {
             </Figure>
             <p>5 degrees C</p>
             <p>Clouds and Sunshine</p>
-                {/* <Image src={ sun_clouds} roundedCircle /> */}
             </Col>
             </Row> 
             <Row>
@@ -65,7 +63,7 @@ function App() {
             <Row>
               <Col>
                 <Row>
-                  <Col md={4} sm={4} xs={4} className="textAlignRight">
+                  <Col md={4} sm={5} xs={5} className="textAlignRight">
                     Img
                   </Col>
                   <Col className="textAlignLeft">
@@ -73,7 +71,7 @@ function App() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col md={4} sm={4} xs={4} className="textAlignRight">
+                  <Col md={4} sm={5} xs={5} className="textAlignRight">
                     Img
                   </Col>
                   <Col className="textAlignLeft">
@@ -81,7 +79,7 @@ function App() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col md={4} sm={4} xs={4} className="textAlignRight">
+                  <Col md={4} sm={5} xs={5} className="textAlignRight">
                     Img
                   </Col>
                   <Col className="textAlignLeft">
@@ -89,7 +87,7 @@ function App() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col md={4} sm={4} xs={4} className="textAlignRight">
+                  <Col md={4} sm={5} xs={5} className="textAlignRight">
                     Img
                   </Col>
                   <Col className="textAlignLeft">
@@ -97,7 +95,7 @@ function App() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col md={4} sm={4} xs={4} className="textAlignRight">
+                  <Col md={4} sm={5} xs={5} className="textAlignRight">
                     Img
                   </Col>
                   <Col className="textAlignLeft">
@@ -116,11 +114,15 @@ function App() {
               />
             </Row>
             <Row className="justify-content-center taskRow">
-              <Col ><p>Completed</p><p>48</p></Col>
-              <Col ><p>Postponed</p><p>12</p></Col>
-              <Col ><p>Undone</p><p>6</p></Col>
-              <Col ><p>All Tasks</p><p>66</p></Col>
-              <Col >+</Col>
+              <Col xs="auto"><p>Completed</p><p>{numberTodosCompleted }</p></Col>
+              <Col xs="auto"><p>Postponed</p><p>{numberTodosPostponed}</p></Col>
+              <Col xs="auto" ><p>In Progress</p><p>{numberTodosInProgress}</p></Col>
+              <Col xs="auto"><p>All Tasks</p><p>{numberTodosTotal}</p></Col>
+              <Col xs="auto">
+                <button onClick={() => dispatch(addTodo())}>
+                  +
+                </button>
+              </Col>
             </Row>
           </Col>
       </Row>
