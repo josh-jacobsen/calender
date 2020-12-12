@@ -24,6 +24,7 @@ function App() {
   let numberTodosPostponed = todos.filter(t => t.state === "Postponed").length;
   let numberTodosInProgress = todos.filter(t => t.state === "InProgress").length;
   let numberTodosTotal = numberTodosCompleted + numberTodosInProgress + numberTodosPostponed
+
   return (
     <div className="App">
       <Container className="containerStyle" >

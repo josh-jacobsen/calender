@@ -8,7 +8,9 @@ export const todoSlice = createSlice({
   ],
   
   reducers: {
-    addTodo: state => {
+    addTodo: (state, action) => {
+      let dueDate = action.payload.startDate.toDateString();
+      let description = action.payload.todoDescription;
       let newToDo = { id: 3, description: "New thing added", state: "Completed" }
       let addTodo = state.filter(t => t.id === newToDo.id)
       if (addTodo.length === 0) {
