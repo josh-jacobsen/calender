@@ -5,16 +5,19 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Figure from 'react-bootstrap/Figure'
+import Button from 'react-bootstrap/Button'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import sun_clouds from './sun_clouds.png'
-import {addTodo} from './features/todo/todoSlice'
+import { addTodo } from './features/todo/todoSlice'
+import {AddTodoModal} from './features/todo/todoModal'
 import 'react-calendar/dist/Calendar.css';
 import './App.scss';
 
 
 function App() {
   const [value, onChange] = useState(new Date());
+  const [modalShow, setModalShow] = React.useState(false);
   const dispatch = useDispatch();
   const todos = useSelector(state => state.todos);
   let numberTodosCompleted = todos.filter(t => t.state === "Completed").length;
@@ -118,10 +121,14 @@ function App() {
               <Col xs="auto"><p>Postponed</p><p>{numberTodosPostponed}</p></Col>
               <Col xs="auto" ><p>In Progress</p><p>{numberTodosInProgress}</p></Col>
               <Col xs="auto"><p>All Tasks</p><p>{numberTodosTotal}</p></Col>
-              <Col xs="auto">
-                <button onClick={() => dispatch(addTodo())}>
+              <Col xs="auto buttonRow">
+                  <Button variant="primary" onClick={() => setModalShow(true)}>
                   +
-                </button>
+                  </Button>
+                      <AddTodoModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                      />
               </Col>
             </Row>
           </Col>
