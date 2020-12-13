@@ -14,13 +14,13 @@ import './App.scss';
 
 function App() {
   const [value, onChange] = useState(new Date());
-  const [today, setToday] = useState(new Date())
   const [modalShow, setModalShow] = React.useState(false);
   const todos = useSelector(state => state.todos);
   let numberTodosCompleted = todos.filter(t => t.state === "Completed").length;
   let numberTodosPostponed = todos.filter(t => t.state === "Postponed").length;
   let numberTodosInProgress = todos.filter(t => t.state === "InProgress").length;
-  let numberTodosTotal = numberTodosCompleted + numberTodosInProgress + numberTodosPostponed
+  let numberTodosUndone = todos.filter(t => t.state === "Undone").length;
+  let numberTodosTotal = numberTodosCompleted + numberTodosInProgress + numberTodosPostponed + numberTodosUndone
   
   return (
     <div className="App">
@@ -47,7 +47,7 @@ function App() {
             <Row className="justify-content-center taskRow">
               <Col xs="auto"><p>Completed</p><p>{numberTodosCompleted }</p></Col>
               <Col xs="auto"><p>Postponed</p><p>{numberTodosPostponed}</p></Col>
-              <Col xs="auto" ><p>In Progress</p><p>{numberTodosInProgress}</p></Col>
+              <Col xs="auto" ><p>Undone</p><p>{numberTodosUndone}</p></Col>
               <Col xs="auto"><p>All Tasks</p><p>{numberTodosTotal}</p></Col>
               <Col xs="auto buttonRow">
                   <Button variant="primary" onClick={() => setModalShow(true)}>

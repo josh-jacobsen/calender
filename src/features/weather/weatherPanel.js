@@ -10,7 +10,6 @@ export const WeatherPanel = (props) => {
     return (
         <Col md={4} className="weatherPanel">
             <Row className="weatherPanelRowMargin">
-                {/* This is the weather part of the app */}
                 <Col>
                     <Figure>
                         <Figure.Image
@@ -20,20 +19,20 @@ export const WeatherPanel = (props) => {
                             src={sun_clouds}
                         />
                     </Figure>
-                    <p>25 degrees C</p>
-                    <p>Clouds and Sunshine</p>
+                    <p className="headingText">25 degrees C</p>
+                    <p className="headingText">Clouds and Sunshine</p>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    {today.toDateString()}
+                    <p className="headingText">{today.toDateString()}</p>
                 </Col>
             </Row>
             <Row>
-                <Col>
+                <Col className="textAlignRight headingText">
                     Due Date
               </Col>
-                <Col>
+                <Col className="textAlignLeft headingText">
                     Description
               </Col>
             </Row>

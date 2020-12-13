@@ -9,6 +9,7 @@ export const todoSlice = createSlice({
   initialState: [],
   
   reducers: {
+    // I'm taking shortcuts here, in the intrests of getting it working in a short space of time, such as not defining actions or action creators.  
     addTodo: (state, action) => {
       let dueDate = action.payload.startDate.toDateString();
       let description = action.payload.todoDescription;
