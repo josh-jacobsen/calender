@@ -4,12 +4,9 @@ import Calendar from 'react-calendar';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Figure from 'react-bootstrap/Figure'
 import Button from 'react-bootstrap/Button'
 
-
-import sun_clouds from './sun_clouds.png'
-import { addTodo } from './features/todo/todoSlice'
+import {WeatherPanel} from './features/weather/weatherPanel'
 import {AddTodoModal} from './features/todo/todoModal'
 import 'react-calendar/dist/Calendar.css';
 import './App.scss';
@@ -38,49 +35,7 @@ function App() {
           </Col>
         </Row>
         <Row>
-          <Col md={4} className="weatherPanel">
-            <Row className="weatherPanelRowMargin">
-              {/* This is the weather part of the app */}
-                          <Col>
-                <Figure>
-                  <Figure.Image
-                    width={50}
-                    height={50}
-                    alt="171x180"
-                    src={ sun_clouds}
-                  />
-            </Figure>
-            <p>25 degrees C</p>
-            <p>Clouds and Sunshine</p>
-            </Col>
-            </Row> 
-            <Row>
-              <Col>
-                {today.toDateString()}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                Due Date
-              </Col>
-              <Col>
-                Description
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                {todos.map(t =>
-                  <Row key={t.id }>
-                    <Col className="textAlignRight">
-                      {t.dueDate}
-                    </Col>
-                    <Col className="textAlignLeft">
-                      {t.description}
-                    </Col>
-                  </Row> )}
-              </Col>
-            </Row>
-            </Col>
+          <WeatherPanel todos={todos }/>
           <Col md={8}>
             <Row className="justify-content-center">
               <Calendar
