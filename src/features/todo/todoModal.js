@@ -16,6 +16,7 @@ export const AddTodoModal = (props) => {
         dispatch(addTodo({ todoDescription, startDate }));
         settodoDescription('');
         setStartDate(new Date())
+        props.onHide();
     };
 
     return (

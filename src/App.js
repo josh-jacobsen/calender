@@ -17,14 +17,14 @@ import './App.scss';
 
 function App() {
   const [value, onChange] = useState(new Date());
+  const [today, setToday] = useState(new Date())
   const [modalShow, setModalShow] = React.useState(false);
-  const dispatch = useDispatch();
   const todos = useSelector(state => state.todos);
   let numberTodosCompleted = todos.filter(t => t.state === "Completed").length;
   let numberTodosPostponed = todos.filter(t => t.state === "Postponed").length;
   let numberTodosInProgress = todos.filter(t => t.state === "InProgress").length;
   let numberTodosTotal = numberTodosCompleted + numberTodosInProgress + numberTodosPostponed
-
+  
   return (
     <div className="App">
       <Container className="containerStyle" >
@@ -50,63 +50,35 @@ function App() {
                     src={ sun_clouds}
                   />
             </Figure>
-            <p>5 degrees C</p>
+            <p>25 degrees C</p>
             <p>Clouds and Sunshine</p>
             </Col>
             </Row> 
             <Row>
               <Col>
-                17 January
+                {today.toDateString()}
               </Col>
             </Row>
             <Row>
               <Col>
-                Saturday
+                Due Date
+              </Col>
+              <Col>
+                Description
               </Col>
             </Row>
             <Row>
               <Col>
-                <Row>
-                  <Col md={4} sm={5} xs={5} className="textAlignRight">
-                    Img
-                  </Col>
-                  <Col className="textAlignLeft">
-                    Thing to do
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={4} sm={5} xs={5} className="textAlignRight">
-                    Img
-                  </Col>
-                  <Col className="textAlignLeft">
-                    Thing to do
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={4} sm={5} xs={5} className="textAlignRight">
-                    Img
-                  </Col>
-                  <Col className="textAlignLeft">
-                    Thing to do
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={4} sm={5} xs={5} className="textAlignRight">
-                    Img
-                  </Col>
-                  <Col className="textAlignLeft">
-                    Thing to do
-                  </Col>
-                </Row>
-                <Row>
-                  <Col md={4} sm={5} xs={5} className="textAlignRight">
-                    Img
-                  </Col>
-                  <Col className="textAlignLeft">
-                    Thing to do
-                  </Col>
-                </Row>
-            </Col>
+                {todos.map(t =>
+                  <Row key={t.id }>
+                    <Col className="textAlignRight">
+                      {t.dueDate}
+                    </Col>
+                    <Col className="textAlignLeft">
+                      {t.description}
+                    </Col>
+                  </Row> )}
+              </Col>
             </Row>
             </Col>
           <Col md={8}>
@@ -141,6 +113,3 @@ function App() {
 }
 
 export default App;
-
-//  <Row className="justify-content-md-center"></Row>
-// row justify-content-center

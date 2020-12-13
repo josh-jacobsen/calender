@@ -1,21 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+var createUniqueId = function () {
+  return '_' + Math.random().toString(36).substr(2, 9);
+};
+
 export const todoSlice = createSlice({
   name: 'todos',
-  initialState: [
-      { id: 1, description: "First thing", state: "InProgress" },
-      { id: 2, description: "Second thing", state: "Completed" },
-  ],
+  initialState: [],
   
   reducers: {
     addTodo: (state, action) => {
       let dueDate = action.payload.startDate.toDateString();
       let description = action.payload.todoDescription;
-      let newToDo = { id: 3, description: "New thing added", state: "Completed" }
-      let addTodo = state.filter(t => t.id === newToDo.id)
-      if (addTodo.length === 0) {
-          state.push(newToDo)
-      }
+      state.push({id: createUniqueId(), description: description, state: "InProgress", dueDate: dueDate})
     },
   },
 });
